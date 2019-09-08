@@ -46,8 +46,10 @@ function Spot(i, j) {
 function setWall(i, j, grid) {
 	const x = Math.ceil(i / w)
 	const y = Math.ceil(j / h)
-	if (grid[x - 1][y - 1]) {
-		grid[x - 1][y - 1].isWall = true
+	if ((x <= cols) && (y <= rows) && grid[x - 1][y - 1]) {
+		if (!grid[x - 1][y - 1].isWall) {
+			grid[x - 1][y - 1].isWall = true
+		}
 	}
 	// for (let i = 0; i < grid.length; i++) {
 	// 	for (let j = 0; j < grid[i].length; j++) {
