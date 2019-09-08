@@ -256,6 +256,8 @@ function draw() {
 		} else {
 			//done
 			console.log('No Solution')
+			alert('No Solution, Sorry')
+			startDraw = false
 			noLoop()
 			return
 		}
