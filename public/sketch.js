@@ -12,8 +12,16 @@ let current
 let startDraw = false
 
 document.getElementById('start-button').addEventListener('click', function() {
-	startDraw = true
+	startDrawing()
 })
+
+document.getElementById('reset-button').addEventListener('click', function() {
+	reset()
+})
+
+function startDrawing() {
+	startDraw = true
+}
 
 Array.prototype.remove = function(val) {
 	for (let i = this.length - 1; i >= 0; i--) {
@@ -43,6 +51,41 @@ function Spot(i, j) {
 	}
 }
 
+function init() {
+	for (let i = 0; i < grid.length; i++) {
+		grid[i] = new Array(rows)
+	}
+
+	for (let i = 0; i < grid.length; i++) {
+		for (let j=0; j < grid[i].length; j++) {
+			grid[i][j] = new Spot(i, j)
+		}
+	}
+
+	for (let i = 0; i < cols; i++) {
+		for (let j = 0; j < rows; j++) {
+			grid[i][j].addNeighbor(grid)
+		}
+	}
+
+	// start = grid[0][0]
+	start = grid[cols-5][rows-4]
+	start.setStart()
+	// end = grid[cols - 1][rows - 1]
+	end = grid[Math.round((Math.random() * (cols - 1)))][Math.round(Math.random() * (rows - 1))]
+	end.setEnd()
+	openList.push(start)
+}
+
+function reset() {
+	grid = new Array(cols)
+	openList = []
+	closedList = []
+	startDraw = false
+	setup()
+	loop()
+}
+
 function setWall(i, j, grid) {
 	const x = Math.ceil(i / w)
 	const y = Math.ceil(j / h)
@@ -51,15 +94,6 @@ function setWall(i, j, grid) {
 			grid[x - 1][y - 1].isWall = true
 		}
 	}
-	// for (let i = 0; i < grid.length; i++) {
-	// 	for (let j = 0; j < grid[i].length; j++) {
-	// 		const { x, y } = grid[i][j]
-	// 		console.log(x)
-	// 		if ((x <= i && i <= (x + w)) && (y <= j && j <= (y + h))) {
-	// 			grid[i][j].isWall = true
-	// 		}
-	// 	}
-	// }
 }
 
 Spot.prototype.setStart = function () {
@@ -69,21 +103,6 @@ Spot.prototype.setStart = function () {
 Spot.prototype.setEnd = function() {
 	this.end = true
 }
-
-// function star(x, y, radius1, radius2, npoints) {
-//   let angle = TWO_PI / npoints;
-//   let halfAngle = angle / 2.0;
-//   beginShape();
-//   for (let a = 0; a < TWO_PI; a += angle) {
-//     let sx = x + cos(a) * radius2;
-//     let sy = y + sin(a) * radius2;
-//     vertex(sx, sy);
-//     sx = x + cos(a + halfAngle) * radius1;
-//     sy = y + sin(a + halfAngle) * radius1;
-//     vertex(sx, sy);
-//   }
-//   endShape(CLOSE);
-// }
 
 Spot.prototype.show = function (color) {
 	const { i, j, start, end, isWall } = this
@@ -164,40 +183,14 @@ function setup() {
 
 	w = width / cols
 	h = height / rows
-
-	for (let i = 0; i < grid.length; i++) {
-		grid[i] = new Array(rows)
-	}
-
-	for (let i = 0; i < grid.length; i++) {
-		for (let j=0; j < grid[i].length; j++) {
-			grid[i][j] = new Spot(i, j)
-		}
-	}
-
-	for (let i = 0; i < cols; i++) {
-		for (let j = 0; j < rows; j++) {
-			grid[i][j].addNeighbor(grid)
-		}
-	}
-
-	// start = grid[0][0]
-	start = grid[cols-5][rows-4]
-	start.setStart()
-	// end = grid[cols - 1][rows - 1]
-	end = grid[Math.round((Math.random() * (cols)))][Math.round(Math.random() * (rows))]
-	end.setEnd()
-	openList.push(start)
+	init()
 }
 
 
 
 function draw() {
-
 	if (mouseIsPressed === true) {
 		setWall(mouseX, mouseY, grid)
-		// console.log(`${mouseY} ${mouseX}`)
-    // line(mouseX, mouseY, pmouseX, pmouseY);
   }
 
 	for (let i = 0; i < cols; i++) {
@@ -219,10 +212,9 @@ function draw() {
 			current = openList[lowestIndex]
 
 			if (current == end) {
-				noLoop()
 				console.log('Done!')
+				noLoop()
 			}
-
 			openList.remove(current)
 			closedList.push(current)
 
@@ -257,11 +249,9 @@ function draw() {
 			//done
 			console.log('No Solution')
 			alert('No Solution, Sorry')
-			startDraw = false
 			noLoop()
-			return
+			// return
 		}
-
 
 		showOpenlist()
 		showClosedList()
@@ -279,6 +269,8 @@ function draw() {
 			path[i].show(color(0, 0, 255))
 		}
 		endShape()
+	} else {
+		return
 	}
 
 }
