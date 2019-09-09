@@ -178,7 +178,8 @@ function showClosedList() {
 }
 
 function setup() {
-	let canvas = createCanvas(window.screen.width, window.screen.height-100)
+	const windowWidth = window.screen.width <= 500 ? 2 * window.screen.width : window.screen.width
+	let canvas = createCanvas(windowWidth, window.screen.height-100)
 	canvas.parent('canvas-container')
 
 	w = width / cols
