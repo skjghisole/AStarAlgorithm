@@ -44,6 +44,22 @@ document.getElementById('guidelines').addEventListener('click', function() {
 	isGuidelinesOn = this.checked
 })
 
+document.getElementById('random-walls-button').addEventListener('click', generateRandomWalls)
+
+
+
+function generateRandomWalls() {
+	for (let i = 0; i < grid.length; i++) {
+		for (let j = 0; j < grid[i].length; j++) {
+			if (Math.floor(Math.random() * 10) >= 9) {
+				const spot = grid[i][j]
+				if (!spot.end || !spot.start) {
+					spot.isWall = true
+				}
+			}
+		}
+	}
+}
 
 function startDrawing() {
 	startDraw = true
@@ -70,11 +86,11 @@ function Spot(i, j) {
 	this.isWall = false
 
 
-	if (Math.random() * 10 > 11) {
-		if ((!this.start) && (!this.end)) {
-			this.isWall = true
-		}
-	}
+	// if (Math.random() * 10 > 11) {
+	// 	if ((!this.start) && (!this.end)) {
+	// 		this.isWall = true
+	// 	}
+	// }
 }
 
 function init() {
