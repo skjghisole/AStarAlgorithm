@@ -1,8 +1,8 @@
 let w
 let h
 
-const cols = 25
-const rows = 25
+const cols = 10
+const rows = 10
 let grid = new Array(cols)
 let openList = []
 let closedList = []
