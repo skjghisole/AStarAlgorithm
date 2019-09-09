@@ -4,19 +4,28 @@
 	<title>A Star Algorithm</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 	<div class="container">
-		<div class="controls row">
-			<div class="col">
-				<button id="start-button" class="btn btn-primary btn-lg">Start</button>
+		<div class="controls control-item row justify-content-center">
+			<div class="row">
+				<div class="col">
+					<button id="start-button" class="btn btn-primary btn-lg">Start</button>
+				</div>
+				<div class="col">
+					<button id="reset-button" class="btn btn-danger btn-lg">Reset</button>
+				</div>
 			</div>
-			<div class="col">
-				<button id="reset-button" class="btn btn-danger btn-lg">Reset</button>
+			<div class="control-item col-12">
+				<div class="row justify-content-center">
+					<section class="form-check">
+						<input class="form-check-input" checked=true type="checkbox" id="guidelines"/>
+						<label class="form-check-label"for="guidelines">Guidelines</label>
+					</section>
+				</div>
 			</div>
-		
-		</div> 
+		</div>
 		<div id="canvas-container" class="row justify-content-center align-items-center"/>
 	</div>
 	<script src="sketch.js"></script>

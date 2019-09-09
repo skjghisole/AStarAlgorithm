@@ -1,8 +1,8 @@
 let w
 let h
 
-const cols = 10
-const rows = 10
+const cols = 25
+const rows = 25
 let grid = new Array(cols)
 let openList = []
 let closedList = []
@@ -11,6 +11,8 @@ let end
 let current
 let startDraw = false
 
+let isGuidelinesOn = document.getElementById('guidelines').checked
+
 document.getElementById('start-button').addEventListener('click', function() {
 	startDrawing()
 })
@@ -18,6 +20,11 @@ document.getElementById('start-button').addEventListener('click', function() {
 document.getElementById('reset-button').addEventListener('click', function() {
 	reset()
 })
+
+document.getElementById('guidelines').addEventListener('click', function() {
+	isGuidelinesOn = this.checked
+})
+
 
 function startDrawing() {
 	startDraw = true
@@ -258,8 +265,10 @@ function draw() {
 			// return
 		}
 
-		showOpenlist()
-		showClosedList()
+		if (isGuidelinesOn) {
+			showOpenlist()
+			showClosedList()
+		}
 		//show path
 		let path = []
 		let temp = current
