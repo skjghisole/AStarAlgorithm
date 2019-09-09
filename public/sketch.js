@@ -49,12 +49,14 @@ document.getElementById('random-walls-button').addEventListener('click', generat
 
 
 function generateRandomWalls() {
-	for (let i = 0; i < grid.length; i++) {
-		for (let j = 0; j < grid[i].length; j++) {
-			if (Math.floor(Math.random() * 10) >= 9) {
-				const spot = grid[i][j]
-				if (!spot.end || !spot.start) {
-					spot.isWall = true
+	if (!startDraw){
+		for (let i = 0; i < grid.length; i++) {
+			for (let j = 0; j < grid[i].length; j++) {
+				if (Math.floor(Math.random() * 10) >= 9) {
+					const spot = grid[i][j]
+					if (!spot.end || !spot.start) {
+						spot.isWall = true
+					}
 				}
 			}
 		}
@@ -110,11 +112,11 @@ function init() {
 		}
 	}
 
-	// start = grid[0][0]
-	start = grid[cols-5][rows-4]
+	start = grid[0][0]
+	// start = grid[cols-5][rows-4]
 	start.setStart()
-	// end = grid[cols - 1][rows - 1]
-	end = grid[Math.round((Math.random() * (cols - 1)))][Math.round(Math.random() * (rows - 1))]
+	end = grid[cols - 5][rows - 25]
+	// end = grid[Math.round((Math.random() * (cols - 1)))][Math.round(Math.random() * (rows - 1))]
 	end.setEnd()
 	openList.push(start)
 }
@@ -162,7 +164,7 @@ Spot.prototype.show = function (color) {
 
 Spot.prototype.calculateHeuristic = function (end) {
 	const { i, j } = this
-	const distance = dist(i, j, end.i, end.j)
+	const distance = dist(i, j, end.i, end.j) * 3
 	this.h = distance
 }
 
