@@ -112,13 +112,20 @@ function init() {
 		}
 	}
 
-	start = grid[0][0]
-	// start = grid[cols-5][rows-4]
+	// start = grid[0][0]
+	// 
+	const randomCol = randomizer(cols - 1)
+	const randomRow = randomizer(rows - 1)
+	start = grid[randomizer(cols - randomCol)][randomizer(rows - randomRow)]
 	start.setStart()
-	end = grid[cols - 5][rows - 25]
-	// end = grid[Math.round((Math.random() * (cols - 1)))][Math.round(Math.random() * (rows - 1))]
+	// end = grid[cols - 5][rows - 25]
+	end = grid[randomCol][randomRow]
 	end.setEnd()
 	openList.push(start)
+}
+
+function randomizer(val) {
+	return Math.round((Math.random() * (val)))
 }
 
 function reset() {
