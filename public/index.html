@@ -3,17 +3,17 @@
 <head>
 	<title>A Star Algorithm</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
-    <script src="lib/Spot.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="container">
-		<div>
-			<button id="start-button">Start</button>
-			<button id="reset-button">Reset</button>
+		<div class="controls">
+			<button id="start-button" class="btn btn-primary">Start</button>
+			<button id="reset-button" class="btn btn-danger">Reset</button>
 		</div> 
-		<div id="canvas-container" />
-    	<script src="sketch.js"></script>
+		<div id="canvas-container" class="canvas"/>
 	</div>
+	<script src="sketch.js"></script>
 </body>
 </html>

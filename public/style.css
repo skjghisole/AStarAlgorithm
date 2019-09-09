@@ -1,3 +1,15 @@
 .container {
-	background-color: rgb(230,230,230)
+	/* background-color: rgb(230,230,230); */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.canvas {
+
+}
+
+.controls {
+	padding: 25px;
 }
