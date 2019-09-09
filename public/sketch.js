@@ -188,9 +188,13 @@ function setup() {
 }
 
 
+function touchMoved() {
+	setWall(mouseX, mouseY, grid)
+}
+
 
 function draw() {
-	if (mouseIsPressed === true) {
+	if (mouseIsPressed) {
 		setWall(mouseX, mouseY, grid)
   }
 
