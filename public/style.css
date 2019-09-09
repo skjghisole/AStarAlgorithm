@@ -1,18 +1,25 @@
-.container {
+.algorithmContainer {
 	/* background-color: rgb(230,230,230); */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	width: 100%;
 }
 
 .canvas {
-
+	padding: 25px;
 }
 
 .controls {
 	padding: 25px;
-	width: auto;
+	width: 100%;
+	background: rgb(220, 220, 220);
+}
+
+.sticky {
+	position: fixed;
+	top: 0;
 }
 
 .control-item {
