@@ -8,3 +8,7 @@ The code was derived from the formulas in https://en.wikipedia.org/wiki/A*_searc
 2. NodeJS
 3. ExpressJS
 4. P5.JS
+
+
+## Test it out!
+https://skjghisole-astar-algorithm.herokuapp.com/
